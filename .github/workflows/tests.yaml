@@ -24,8 +24,12 @@ jobs:
       with:
         go-version: ${{ steps.goversion.outputs.goversion }}
     - env:
-        TARGET: ${{ matrix.target }}
       run: |
         set -euo pipefail
         go clean -testcache
         make test-unit
+    - uses: actions/upload-artifact@1eb3cb2b3e0f29609092a73eb033bb759a334595 # v4.1.0
+      if: always()
+      with:
+        name: "macos"
+        path: ./**/junit_*.xml
