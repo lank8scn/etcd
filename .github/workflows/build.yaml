@@ -35,7 +35,7 @@ jobs:
 
           go mod tidy
           go clean --testcache; 
-          ./test.sh
+          make test-unit
 
           echo "${TARGET}"
           case "${TARGET}" in
